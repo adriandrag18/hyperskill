@@ -1,0 +1,156 @@
+type: edu
+custom_name: stage4
+files:
+- name: tests.py
+  visible: false
+  text: |
+    from hstest.stage_test import *
+    from hstest.test_case import TestCase
+
+
+    class CalcTest(StageTest):
+        on_exit = False
+
+        def generate(self) -> List[TestCase]:
+            return [TestCase(stdin=['/help', self.test_1_1, self.test_1_2]),
+                    TestCase(stdin=['7 + 1 + 4', self.test_2_1, self.test_2_2, self.test_2_3, self.test_2_4,
+                                    self.test_2_5, self.test_2_6, self.test_2_7, self.test_2_8]),
+                    TestCase(stdin=['8 --- 3', self.test_3_1, self.test_3_2, self.test_3_3, self.test_3_4])]
+
+        # test of help command
+        def test_1_1(self, output):
+            output = str(output).lower().strip()
+            if len(output.split(" ")) < 1:
+                return CheckResult.wrong("It seems like there was no any \"help\" message.")
+            return ""
+
+        # test of an empty input
+        def test_1_2(self, output):
+            output = str(output)
+            if len(output) != 0:
+                return CheckResult.wrong("Incorrect response to an empty string. "
+                                         "The program should not print anything.")
+            self.on_exit = True
+            return '/exit'
+
+        # tests for this stage #####################################################
+        # sum of three positive
+        def test_2_1(self, output):
+            output = str(output).lower().strip()
+            if output != "12":
+                return CheckResult.wrong("The program cannot sum more than two numbers.")
+            return "23 - 17 - 4"
+
+        # sum of positive and negative is positive
+        def test_2_2(self, output):
+            output = str(output).lower().strip()
+            if output != "2":
+                return CheckResult.wrong("Incorrect sum of positive and negative numbers.")
+            return "23 - 17 - 13"
+
+        # sum of positive and negative is negative
+        def test_2_3(self, output):
+            output = str(output).lower().strip()
+            if output != "-7":
+                return CheckResult.wrong("Incorrect sum of positive and negative numbers.")
+            return "-9 - 4 - 21"
+
+        # sum of negative only
+        def test_2_4(self, output):
+            output = str(output).lower().strip()
+            if output != "-34":
+                return CheckResult.wrong("Incorrect sum of three negative numbers.")
+            return "33 + 21 + 11 + 49 - 32 - 9 + 1 - 80 + 4"
+
+        # big amount of number
+        def test_2_5(self, output):
+            output = str(output).lower().strip()
+            if output != "-2":
+                return CheckResult.wrong("The program cannot process a big amount of numbers.")
+            return "101"
+
+        # one positive number
+        def test_2_6(self, output):
+            output = str(output).lower().strip()
+            if output != "101":
+                return CheckResult.wrong("The program printed not the same number that was entered.")
+            return "-302"
+
+        # one negative number
+        def test_2_7(self, output):
+            output = str(output).lower().strip()
+            if output != "-302":
+                return CheckResult.wrong("The program printed not the same number that was entered.")
+            return "10 - 7 - 3"
+
+        # the sum is zero
+        def test_2_8(self, output):
+            output = str(output).lower().strip()
+            if output != "0":
+                return CheckResult.wrong("The problem when sum is equal to 0 has occurred.")
+            self.on_exit = True
+            return "/exit"
+
+        # usage of several operators ###############################################
+        # test of odd number of minus signs
+        def test_3_1(self, output):
+            output = str(output).lower().strip()
+            if output != "5":
+                return CheckResult.wrong("The program cannot process several minus signs.")
+            return "8 -- 3"
+
+        # test of even number of minus signs
+        def test_3_2(self, output):
+            output = str(output).lower().strip()
+            if output != "11":
+                return CheckResult.wrong("The program not correctly processes even number of minus signs.")
+            return "32 ++++++++++++++ 4"
+
+        # test of several plus signs
+        def test_3_3(self, output):
+            output = str(output).lower().strip()
+            if output != "36":
+                return CheckResult.wrong("The program cannot process several plus signs.")
+            return "5 --- 2 ++++++ 4 -- 2 ---- 1"
+
+        # test of multiple operations
+        def test_3_4(self, output):
+            output = str(output).lower().strip()
+            if output != "10":
+                return CheckResult.wrong("The program cannot process multiple operations with several operators.")
+            self.on_exit = True
+            return "/exit"
+
+        def check(self, reply: str, attach) -> CheckResult:
+            if self.on_exit:
+                reply = reply.strip().lower().split('\n')
+                self.on_exit = False
+                if 'bye' not in reply[-1]:
+                    return CheckResult.wrong("Your program didn't print \"bye\" after entering \"/exit\".")
+                else:
+                    return CheckResult.correct()
+            else:
+                return CheckResult.wrong("The program ended prematurely")
+
+
+    if __name__ == '__main__':
+        CalcTest("calculator.calculator").run_tests()
+  learner_created: false
+- name: calculator/calculator.py
+  visible: true
+  text: |
+    while True:
+        s = input()
+        if s == '/exit':
+            break
+        if s == '':
+            continue
+        if s == '/help':
+            print('The program calculates the sum of numbers')
+            continue
+        print(sum([int(x) for x in s.split()]))
+    print('Bye!')
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/74/stages/412/implement
+status: Solved
+record: 4

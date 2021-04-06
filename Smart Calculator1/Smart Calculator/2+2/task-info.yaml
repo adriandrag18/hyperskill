@@ -1,0 +1,59 @@
+type: edu
+custom_name: stage1
+files:
+- name: tests.py
+  visible: false
+  text: |
+    from hstest.stage_test import *
+    from hstest.stage_test import StageTest
+    from hstest.test_case import TestCase, SimpleTestCase
+
+
+    class CalcTest(StageTest):
+        def generate(self) -> List[TestCase]:
+            return [
+                # A set of positive summing tests
+                SimpleTestCase(stdin="0 1", stdout="1",
+                               feedback="The program cannot sum two positive numbers."),
+
+                SimpleTestCase(stdin="1 0 ", stdout="1",
+                               feedback="The program cannot sum two positive numbers. "
+                                        "And there is an extra space after the second number."),
+
+                SimpleTestCase(stdin=" 5 7", stdout="12",
+                               feedback="The program cannot sum two positive numbers. "
+                                        "And there is an extra space before the first number."),
+
+                SimpleTestCase(stdin="321 34", stdout="355",
+                               feedback="The program cannot sum two three-digit numbers."),
+
+                # sum of positive and negative number
+                SimpleTestCase(stdin="-2 5", stdout="3",
+                               feedback="The program cannot sum negative and positive number."),
+
+                SimpleTestCase(stdin="3 -1", stdout="2",
+                               feedback="The program cannot sum negative and positive number."),
+
+                # sum of two negative numbers
+                SimpleTestCase(stdin="-234 -123", stdout="-357",
+                               feedback="Your program cannot sum two negative numbers."),
+
+                # test of zero-sum
+                SimpleTestCase(stdin="-5 5", stdout="0",
+                               feedback="There is a problem when the sum is equal to 0."),
+            ]
+
+        def check(self, reply: str, attach) -> CheckResult:
+            return CheckResult(reply.strip() == str(attach).strip(), "")
+
+
+    if __name__ == '__main__':
+        CalcTest("calculator.calculator").run_tests()
+  learner_created: false
+- name: calculator/calculator.py
+  visible: true
+  text: '# write your code here'
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/74/stages/409/implement
+status: Solved
+record: 1

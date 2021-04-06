@@ -1,0 +1,42 @@
+type: code
+files:
+- name: task.py
+  visible: true
+  learner_created: false
+- name: computer_vison.py
+  visible: true
+  learner_created: true
+- name: for.py
+  visible: true
+  learner_created: true
+- name: exercices for and lists/ex1.py
+  visible: true
+  learner_created: true
+- name: exercices for and lists/ex0.py
+  visible: true
+  learner_created: true
+- name: exercices for and lists/ex2.py
+  visible: true
+  learner_created: true
+- name: exercices for and lists/warmup.py
+  visible: true
+  learner_created: true
+- name: exercices for and lists/ex3.py
+  visible: true
+  learner_created: true
+- name: exercices for and lists/ex4.py
+  visible: true
+  learner_created: true
+- name: exercices for and lists/ex5.py
+  visible: true
+  learner_created: true
+- name: exercices for and lists.zip
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/8930
+status: Solved
+feedback:
+  message: <html>Correct solution<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/8930">JetBrains
+    Academy</a></html>
+  time: Tue, 30 Jun 2020 19:15:08 UTC
+record: -1

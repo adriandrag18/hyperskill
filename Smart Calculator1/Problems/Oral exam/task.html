@@ -1,0 +1,20 @@
+<b>Oral exam</b> <a class=right href="https://hyperskill.org/learn/step/8933">Open on JetBrains Academy</a>
+<br><br>
+<html>
+ <head></head>
+ <body>
+  <p>University students are taking an oral exam at the end of the course.</p> 
+  <p>They get questions simultaneously and have enough time to prepare the answer. Once a student is ready, they put their name on the board in front of the class and waits for their turn to present the answer to the professor.</p> 
+  <p>If the professor likes it, the student gets the grade, removes their name from the board, and leaves the exam.</p> 
+  <p>However, sometimes the professor might want to give the student an additional small task. In this case, they will need to immediately put their name at the end of the current name list on the board and present the solution to the extra question as soon as their turn comes. This can repeat a couple of times before the student finally gets the grade.</p> 
+  <p>Given the log of the exam, print out the names of the students in the order they were leaving the exam.</p> 
+  <p>The number <code class="java">n</code> denotes the total number of records. <code class="java">READY student_name</code> means that the student called <code class="java">student_name</code> is ready to present their answer. <code class="java">PASSED</code> means that the student whose turn it is passed the exam, while <code class="java">EXTRA</code> means that they received an extra question and will have to present again.</p> 
+  <p><button class="btn-sm btn-outline-secondary" onclick="getElementById('hint-1373').style.display='inline'"> Hint </button> </p>
+  <div id="hint-1373" style="display:none;">
+    Use 
+   <code class="java">split(" ")</code> to split the input string on the whitespace. 
+  </div>
+  <p></p>
+ </body>
+</html><br><b>Sample Input:</b><br>5<br>READY Anna<br>READY Tom<br>EXTRA<br>PASSED<br>PASSED<br><b>Sample Output:</b><br>Tom<br>Anna<br><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 15 seconds</font><br><br>
+<a href="https://hyperskill.org/learn/step/8925">Show topic summary</a>

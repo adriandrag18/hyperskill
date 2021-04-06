@@ -1,0 +1,10 @@
+type: framework
+content:
+- 2+2
+- 2+2+
+- Count them all
+- Add subtractions
+- Error!
+- Variables
+- I’ve got the power
+current_task: 6
