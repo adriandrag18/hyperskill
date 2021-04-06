@@ -1,0 +1,11 @@
+type: code
+files:
+- name: task.py
+  visible: true
+  text: |-
+    def create_function(n):
+        return ...
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/7100
+status: Solved
+record: -1
